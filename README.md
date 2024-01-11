@@ -20,6 +20,9 @@ FlexiCart is an online shopping cart application built using Python and Django. 
 * Django
 * React
 * Stripe
+* Docker
+* React Native
+* Expo
 
 ## Project Stracture
 
