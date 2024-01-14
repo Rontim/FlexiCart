@@ -7,6 +7,7 @@ from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,7 +37,9 @@ INSTALLED_APPS = [
     'corsheaders',  # CORS
 
     # Manage Apps
-    'user_service'
+    'user_service',
+    'product_service',
+
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
@@ -163,7 +166,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
 }
 

@@ -7,6 +7,7 @@ from djoser import views as djoser_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('djoser.urls')),
-    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/', include('djoser.urls')),  # DJOSER URLS
+    path('api/auth/', include('djoser.urls.jwt')),  # DJOSER JWT URLS
+    path('api/', include('product_service.urls')),  # PRODUCT SERVICE URLS
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
