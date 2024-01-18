@@ -32,9 +32,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'flexi_cart.apps.FlexiCartConfig',
+
+    # Third Party Apps
     'djoser',  # DJOSER
     'rest_framework',  # REST FRAMEWORK
     'corsheaders',  # CORS
+    "django_celery_results",  # Celery Results for Django Admin
 
     # Manage Apps
     'user_service',
@@ -94,6 +97,27 @@ EMAIL_HOST_USER = getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = True
 
+
+# CACHE Settings
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f"redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
+# Celery Settings
+CELERY_BROKER_URL = getenv('CELERY_BROKER_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = getenv(
+    'CELERY_RESULT_BACKEND', 'redis://localhost:6379')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -105,7 +129,7 @@ if DEVELOPMENT_MODE is True:
             'NAME': getenv('DB_NAME', 'flexi_cart'),
             'USER': getenv('DB_USER', 'postgres'),
             'PASSWORD': getenv('DB_PASSWORD', 'postgres'),
-            'HOST': getenv('DB_HOST', 'localhost'),
+            'HOST': getenv('POS_HOST', 'localhost'),
             'PORT': getenv('DB_PORT', '5432'),
         }
     }
@@ -185,11 +209,20 @@ DJOSER = {
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'SEND_CONFIRMATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
-    'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
+    'ACTIVATION_URL': 'auth/users/activation/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
+
+    'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
     'SERIALIZERS': {
         'user_create': 'user_service.serializers.UserCreateSerializer',
         'user': 'user_service.serializers.UserSerializer',
     },
+    'EMAIL': {
+        'activation': 'user_service.tasks.ActivationEmail',
+        'confirmation': 'user_service.tasks.ConfirmationEmail',
+        'password_reset': 'user_service.tasks.PasswordResetEmail',
+        'password_changed_confirmation': 'user_service.tasks.PasswordChangedConfirmationEmail',
+        'username_changed_confirmation': 'user_service.task.UsernameChangedConfirmationEmail',
+        'username_reset': 'user_service.tasks.UsernameResetEmail',
+    }
 }

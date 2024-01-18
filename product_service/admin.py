@@ -31,6 +31,8 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category__name')
 
     def image_tag(self, obj):
-        return format_html('<img src="{}" width="50" height="50" />'.format(obj.image.url))
+        if obj.image:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.image.url))
+        return ''
 
     image_tag.short_description = 'Image'

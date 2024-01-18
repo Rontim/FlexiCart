@@ -1,24 +1,30 @@
 version: '3.9'
+
 services:
   backend:
+    image: backend
+    container_name: django_backend
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - .env
+    command: python manage.py runserver
     ports:
-        - "8000:8000"
+      - "8000:8000"
     volumes:
-        - .:/app
+      - .:/app
     depends_on:
       - db
 
   db:
-    image: postgres:13.2
+    container_name: postgres_db
+    image: postgres:16.1-alpine
+    restart: always
     environment:
-      - POSTGRES_DB=DATABASE_NAME
-      - POSTGRES_USER=DATABASE_USER
-      - POSTGRES_PASSWORD=DATABASE_PASSWORD
-    env_file:
-      - .env
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: flexicart
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     ports:
