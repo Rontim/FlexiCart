@@ -116,6 +116,7 @@ CELERY_RESULT_BACKEND = getenv(
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 
 # Database
@@ -224,5 +225,8 @@ DJOSER = {
         'password_changed_confirmation': 'user_service.tasks.PasswordChangedConfirmationEmail',
         'username_changed_confirmation': 'user_service.task.UsernameChangedConfirmationEmail',
         'username_reset': 'user_service.tasks.UsernameResetEmail',
-    }
+    },
+    'PERMISSIONS': {
+        "user_list": ["rest_framework.permissions.AllowAny"],
+    },
 }

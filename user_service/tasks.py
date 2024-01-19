@@ -19,17 +19,17 @@ class ActivationEmail(BaseEmailMessage):
         context["url"] = settings.ACTIVATION_URL.format(**context)
         return context
 
-    @shared_task
-    def send(self, to, *args, **kwargs):
-        return super().send(to, *args, **kwargs)
+    @shared_task(bind=True)
+    def send_activation(self, to, *args, **kwargs):
+        return self.send(to, *args, **kwargs)
 
 
 class ConfirmationEmail(BaseEmailMessage):
     template_name = "email/confirmation.html"
 
-    @shared_task
-    def send(self, to, *args, **kwargs):
-        return super().send(to, *args, **kwargs)
+    @shared_task(bind=True)
+    def send_confirmation(self, to, *args, **kwargs):
+        return self.send(to, *args, **kwargs)
 
 
 class PasswordResetEmail(BaseEmailMessage):
@@ -44,17 +44,25 @@ class PasswordResetEmail(BaseEmailMessage):
         context["url"] = settings.PASSWORD_RESET_CONFIRM_URL.format(**context)
         return context
 
-    @shared_task
-    def send(self, to, *args, **kwargs):
-        return super().send(to, *args, **kwargs)
+    @shared_task(bind=True)
+    def send_password_reset(self, to, *args, **kwargs):
+        return self.send(to, *args, **kwargs)
 
 
 class PasswordChangedConfirmationEmail(BaseEmailMessage):
     template_name = "email/password_changed_confirmation.html"
 
+    @shared_task(bind=True)
+    def send_password_changed(self, to, *args, **kwargs):
+        return self.send(to, *args, **kwargs)
+
 
 class UsernameChangedConfirmationEmail(BaseEmailMessage):
     template_name = "email/username_changed_confirmation.html"
+
+    @shared_task(bind=True)
+    def send_username_change(self, to, *args, **kwargs):
+        return self.send(to, *args, **kwargs)
 
 
 class UsernameResetEmail(BaseEmailMessage):
@@ -68,3 +76,7 @@ class UsernameResetEmail(BaseEmailMessage):
         context["token"] = default_token_generator.make_token(user)
         context["url"] = settings.USERNAME_RESET_CONFIRM_URL.format(**context)
         return context
+
+    @shared_task(bind=True)
+    def send_username_reset(self, to, *args, **kwargs):
+        return self.send(to, *args, **kwargs)
