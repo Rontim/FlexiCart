@@ -1,0 +1,142 @@
+[
+{
+  "model": "product_service.product",
+  "pk": 1,
+  "fields": {
+    "name": "OPPO Find X5 Pro",
+    "description": "The Oppo Find X5 Pro is a high-end smartphone with everything you need. With an IP68 certification and good ergonomics, you'll love how it feels in your hand. The OLED LTPO 2.0 screen is one of the best on the market, with a high brightness of 756 cd/m² and large color coverage. It also has a refresh rate of 120 Hz. Under the hood, the Find X5 Pro has a powerful Snapdragon 8 Gen 1 chip that can handle even the most demanding games. The phone also has an excellent camera, with three sensors that produce top-quality photos. The Oppo Find X5 Pro is the best smartphone of 2023, with only a slightly weak battery life holding it back.",
+    "price": "70000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Oppo",
+    "stock_quantity": 50,
+    "created_at": "2024-01-14T17:10:35.171Z",
+    "updated_at": "2024-01-14T17:48:28.649Z",
+    "slug": "3b8e090555cd8bfbcb0fb3b646f84b6c769f124dd5d68f43e7fd2ddb42bd6aab",
+    "image": "product/3b8e090555cd8bfbcb0fb3b646f84b6c769f124dd5d68f43e7fd2ddb42bd6aab/Oppo-Find-X5-5G_5mwn3fV.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+},
+{
+  "model": "product_service.product",
+  "pk": 2,
+  "fields": {
+    "name": "Apple iPhone 14 Pro",
+    "description": "The Apple iPhone 14 Pro is a new and improved version of the iPhone 14. It has a few new features, including a Dynamic Island that acts as the center of notifications for the phone. The 6.1-inch screen is still at 120 Hz and is bright, well-calibrated, and color-accurate. The phone also has impressive battery life, lasting two full days, with the Always on Display mode activated.\r\nThe iPhone 14 Pro also has a powerful camera, with a 12-megapixel telephoto sensor and a 48-megapixel main sensor. It also has 4K HDR video recording and a software-generated x2 zoom. The internal power is provided by the A16 Bionic chip, making it one of the most powerful smartphones of the year. The iPhone 14 Pro is the best Apple smartphone of 2023, but its price increase may be painful for some. If you have an iPhone 13, there's no need to upgrade. But for those with a previous generation, the investment may be worth it.",
+    "price": "140000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Apple",
+    "stock_quantity": 10,
+    "created_at": "2024-01-14T17:12:26.615Z",
+    "updated_at": "2024-01-14T17:48:54.515Z",
+    "slug": "44c6aeb065aa2917d45a044ce3d5569f5a0850cd4f456f08051af7af5b413309",
+    "image": "product/44c6aeb065aa2917d45a044ce3d5569f5a0850cd4f456f08051af7af5b413309/Iphone-14-Pro-5_skv51vo.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+},
+{
+  "model": "product_service.product",
+  "pk": 4,
+  "fields": {
+    "name": "Samsung Galaxy S22 Plus",
+    "description": "The Samsung Galaxy S22 Plus is a high-end smartphone with excellent price value. It has a powerful Exynos 2200 chip and a camera that produces awesome photos. The 6.2-inch AMOLED screen is bright and has a high refresh rate of 120 Hz. The phone also has a large battery that lasts a full day with moderate use.",
+    "price": "80000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Samsung",
+    "stock_quantity": 20,
+    "created_at": "2024-01-14T17:17:12.594Z",
+    "updated_at": "2024-01-14T17:49:45.630Z",
+    "slug": "0ad876701290feda5695617c2c920e14643b6516b3d1f3d0a1a2052675c09d4b",
+    "image": "product/0ad876701290feda5695617c2c920e14643b6516b3d1f3d0a1a2052675c09d4b/Samsung-Galaxy-_M8R1ceI.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+},
+{
+  "model": "product_service.product",
+  "pk": 5,
+  "fields": {
+    "name": "Google Pixel 7",
+    "description": "Google has been known for its smartphone series, and the Pixel 7 continues this tradition. The 6.4-inch OLED screen is compact and lightweight, making it easy to handle. The screen has a resolution of 2400 x 1080 pixels and a refresh rate of 90Hz, making it smooth to use.\r\nThe camera system is one of the best in the market, with a 12.2 MP main camera and a 12 MP ultra-wide camera. The camera software has been improved, and the Night Sight mode can capture amazing low-light photos. Video recording is also impressive, with the ability to record in 4K at 60 fps. It is available for KES 90,000.",
+    "price": "90000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Google",
+    "stock_quantity": 10,
+    "created_at": "2024-01-14T17:19:24.341Z",
+    "updated_at": "2024-01-14T17:50:11.807Z",
+    "slug": "2e6fcfcb62695d5f5ad447a68c623385b72d2a4845ff67feb6c424246d748295",
+    "image": "product/2e6fcfcb62695d5f5ad447a68c623385b72d2a4845ff67feb6c424246d748295/Google-Pixel-7-_q3qbq7y.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+},
+{
+  "model": "product_service.product",
+  "pk": 6,
+  "fields": {
+    "name": "Apple iPhone 13 Pro",
+    "description": "If you find the iPhone 14 Pro too expensive for your budget, consider the iPhone 13 Pro. It's still a great smartphone, with a powerful A15 Bionic chip and a camera that produces top-quality photos. The battery life is also impressive, lasting a full day with moderate use.",
+    "price": "100000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Apple",
+    "stock_quantity": 10,
+    "created_at": "2024-01-14T17:21:15.643Z",
+    "updated_at": "2024-01-14T17:50:35.141Z",
+    "slug": "dd1d7bac883312467cc578baa2f834e5b847de766e30ce2ad516ec7b7164f4d0",
+    "image": "product/dd1d7bac883312467cc578baa2f834e5b847de766e30ce2ad516ec7b7164f4d0/iPhone-13-Color-Options.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+},
+{
+  "model": "product_service.product",
+  "pk": 7,
+  "fields": {
+    "name": "Samsung Galaxy A53",
+    "description": "Samsung, known for its high-end phones, has entered the mid-range sector with the Samsung Galaxy A53. This phone offers an excellent balance between performance and price. It boasts a 6.3-inch AMOLED screen with a maximum refresh rate of 120 Hz and a brightness of 707 cd/m2, making it the best touchscreen in this price bracket. The camera is also of high quality, with four rear lenses that deliver good shots, especially in portrait mode. The phone has a 5,000 mAh battery that lasts two full days of use, although the charging time is not as fast as the competition. An Exynos 1280 chip powers the performance. With a price tag of KES 45,000, the Samsung Galaxy A53 is an excellent investment for those looking for the best smartphone under KES 50,000.",
+    "price": "50000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Samsung",
+    "stock_quantity": 10,
+    "created_at": "2024-01-14T17:31:40.410Z",
+    "updated_at": "2024-01-14T17:50:57.318Z",
+    "slug": "b33baac6ae2edcd42986b25058af413540ea7494ddc309feb5db74a42647196d",
+    "image": "product/b33baac6ae2edcd42986b25058af413540ea7494ddc309feb5db74a42647196d/Samsung-Galaxy-_q9y2TDm.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+},
+{
+  "model": "product_service.product",
+  "pk": 8,
+  "fields": {
+    "name": "Xiaomi Redmi Note 11",
+    "description": "Xiaomi has once again proven to be a market leader in offering quality phones at an affordable price with the Redmi Note 11. This phone boasts a 90 Hz OLED screen and a 33W fast charge capability, which gives you two full days of use. The Snapdragon 680 chip and four photo sensors provide a high-quality experience at a reasonable price. The Redmi Note 11 is expected to retail for around KES. 20,000 in Kenya.",
+    "price": "20000.00",
+    "availability": true,
+    "category": 1,
+    "brand": "Xiaomi",
+    "stock_quantity": 10,
+    "created_at": "2024-01-14T17:38:36.540Z",
+    "updated_at": "2024-01-14T17:51:12.417Z",
+    "slug": "5f2b70bbee9416d356ca6c723f7678c788de248974247574a824fb60494ece8e",
+    "image": "product/5f2b70bbee9416d356ca6c723f7678c788de248974247574a824fb60494ece8e/Redmi-Note-11.png",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  }
+}
+]

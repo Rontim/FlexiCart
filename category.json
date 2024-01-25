@@ -1,0 +1,354 @@
+[
+{
+  "model": "product_service.category",
+  "pk": 1,
+  "fields": {
+    "name": "Smartphones",
+    "parent": 1
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 2,
+  "fields": {
+    "name": "Laptops",
+    "parent": 1
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 3,
+  "fields": {
+    "name": "Cameras",
+    "parent": 1
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 4,
+  "fields": {
+    "name": "Audio Devices",
+    "parent": 1
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 5,
+  "fields": {
+    "name": "Wearable Technology",
+    "parent": 1
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 6,
+  "fields": {
+    "name": "Men's Clothing",
+    "parent": 2
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 7,
+  "fields": {
+    "name": "Women's Clothing",
+    "parent": 2
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 8,
+  "fields": {
+    "name": "Shoes",
+    "parent": 2
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 9,
+  "fields": {
+    "name": "Accessories",
+    "parent": 2
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 10,
+  "fields": {
+    "name": "Activewear",
+    "parent": 2
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 11,
+  "fields": {
+    "name": "Furniture",
+    "parent": 3
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 12,
+  "fields": {
+    "name": "Home Decor",
+    "parent": 3
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 13,
+  "fields": {
+    "name": "Bedding and Linens",
+    "parent": 3
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 14,
+  "fields": {
+    "name": "Kitchen and Dining",
+    "parent": 3
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 15,
+  "fields": {
+    "name": "Appliances",
+    "parent": 3
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 16,
+  "fields": {
+    "name": "Skincare",
+    "parent": 4
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 17,
+  "fields": {
+    "name": "Makeup",
+    "parent": 4
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 18,
+  "fields": {
+    "name": "Haircare",
+    "parent": 4
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 19,
+  "fields": {
+    "name": "Fragrances",
+    "parent": 4
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 20,
+  "fields": {
+    "name": "Personal Hygiene",
+    "parent": 4
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 21,
+  "fields": {
+    "name": "Fitness Equipment",
+    "parent": 5
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 22,
+  "fields": {
+    "name": "Outdoor Gear",
+    "parent": 5
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 23,
+  "fields": {
+    "name": "Sports Apparel",
+    "parent": 5
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 24,
+  "fields": {
+    "name": "Camping and Hiking",
+    "parent": 5
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 25,
+  "fields": {
+    "name": "Fiction",
+    "parent": 6
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 26,
+  "fields": {
+    "name": "Non-Fiction",
+    "parent": 6
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 27,
+  "fields": {
+    "name": "Children's Books",
+    "parent": 6
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 28,
+  "fields": {
+    "name": "Office Supplies",
+    "parent": 6
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 29,
+  "fields": {
+    "name": "Art and Craft Supplies",
+    "parent": 6
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 30,
+  "fields": {
+    "name": "Action Figures",
+    "parent": 7
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 31,
+  "fields": {
+    "name": "Board Games",
+    "parent": 7
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 32,
+  "fields": {
+    "name": "Puzzles",
+    "parent": 7
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 33,
+  "fields": {
+    "name": "Outdoor Play",
+    "parent": 7
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 34,
+  "fields": {
+    "name": "Vitamins and Supplements",
+    "parent": 8
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 35,
+  "fields": {
+    "name": "Fitness Trackers",
+    "parent": 8
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 36,
+  "fields": {
+    "name": "Health Monitors",
+    "parent": 8
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 37,
+  "fields": {
+    "name": "Personal Care Appliances",
+    "parent": 8
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 38,
+  "fields": {
+    "name": "Necklaces",
+    "parent": 9
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 39,
+  "fields": {
+    "name": "Bracelets",
+    "parent": 9
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 40,
+  "fields": {
+    "name": "Earrings",
+    "parent": 9
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 41,
+  "fields": {
+    "name": "Watches",
+    "parent": 9
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 42,
+  "fields": {
+    "name": "Car Accessories",
+    "parent": 10
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 43,
+  "fields": {
+    "name": "Motorcycle Gear",
+    "parent": 10
+  }
+},
+{
+  "model": "product_service.category",
+  "pk": 44,
+  "fields": {
+    "name": "Maintenance Tools",
+    "parent": 10
+  }
+}
+]

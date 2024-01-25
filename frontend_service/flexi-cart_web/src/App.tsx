@@ -6,6 +6,9 @@ import {
 
 import { Provider } from "react-redux";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import SignUp from "./pages/SignUp";
@@ -60,6 +63,7 @@ function App() {
   return (
     <Provider store={store}>
       <Flowbite>
+        <ToastContainer />
         <RouterProvider router={routes} />
       </Flowbite>
     </Provider>

@@ -1,30 +1,25 @@
-from djoser.views import UserViewSet as DjoserUserViewSet
-from djoser import utils, signals
-from django.contrib.auth import get_user_model
-from django.utils.timezone import now
+import re
+import token
+from urllib import request
+from uu import decode
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.tokens import default_token_generator
-from django.conf import settings
+from django.utils.timezone import now
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
-from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
+
+from djoser import signals, utils
+from djoser.compat import get_user_email
 from djoser.conf import settings
-from djoser.views import UserViewSet
-from djoser import utils
-from djoser.compat import get_user_email, get_user_email_field_name
-from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import update_session_auth_hash
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.mail import send_mail
-from django.core.exceptions import ValidationError
-from rest_framework.viewsets import ModelViewSet
-from django.contrib.auth import get_user_model
+
+from .tasks import send_activation_email, send_confirmation_email
 
 User = get_user_model()
 
 
-class CustomUserViewSet(ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     serializer_class = settings.SERIALIZERS.user
     queryset = User.objects.all()
     permission_classes = settings.PERMISSIONS.user
@@ -116,23 +111,16 @@ class CustomUserViewSet(ModelViewSet):
         return self.request.user
 
     def perform_create(self, serializer, *args, **kwargs):
-        user = serializer(*args, **kwargs)
-        user.is_active = False
-
+        user = serializer.save(*args, **kwargs)
         signals.user_registered.send(
             sender=self.__class__, user=user, request=self.request
         )
 
-        context = {"user": user}
-        to = [get_user_email(user)]
-
-        if settings.SEND_ACTIVATION_EMAIL:
-            settings.EMAIL.activation(
-                self.request, context).send_activation.delay(to)
-
-        if settings.SEND_CONFIRMATION_EMAIL:
-            settings.EMAIL.confirmation(
-                self.request, context).send_confirmation.delay(to)
+        protocol = self.request.scheme
+        to = get_user_email(user)
+        token = self.token_generator.make_token(user)
+        print(f'token: {token}')
+        send_activation_email.delay(to, protocol, token)  # type: ignore
 
     def perform_update(self, serializer, *args, **kwargs):
         super().perform_update(serializer, *args, **kwargs)
@@ -141,11 +129,10 @@ class CustomUserViewSet(ModelViewSet):
             sender=self.__class__, user=user, request=self.request
         )
 
-        if settings.SEND_ACTIVATION_EMAIL and not user.is_active:
-            context = {"user": user}
-            to = [get_user_email(user)]
-            settings.EMAIL.activation(
-                self.request, context).send_activation.delay(to)
+        # should we send activation email after update?
+        if not user.is_active:
+            # TODO: add celery task to send email for account activation
+            pass
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -171,25 +158,35 @@ class CustomUserViewSet(ModelViewSet):
 
     @action(["post"], detail=False)
     def activation(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.instance
-        if user.is_active:
-            return Response(
-                {"detail": _("User already activated.")},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        user.is_active = True
-        user.save()
+        uid = request.data.get("uid")
+        token = request.data.get("token")
+
+        if not uid or not token:
+            return Response({'uid': 'Invalid user id or user doesn\'t exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            uid = utils.decode_uid(uid)
+            user = User.objects.get(pk=uid)
+        except (User.DoesNotExist, ValueError, TypeError, OverflowError):
+            raise NotFound()
+
+        print(user)
+        print(
+            f'request token: {token} vs user token: {self.token_generator.make_token(user)}')
+
+        if not self.token_generator.check_token(user, token):
+            return Response({'token': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+
         signals.user_activated.send(
             sender=self.__class__, user=user, request=self.request
         )
 
-        if settings.SEND_CONFIRMATION_EMAIL:
-            context = {"user": user}
-            to = [get_user_email(user)]
-            settings.EMAIL.confirmation(
-                self.request, context).send_confirmation.delay(to)
+        user.is_active = True
+        user.save()
+
+        email = get_user_email(user)
+
+        send_confirmation_email.delay(email)  # type: ignore
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -197,14 +194,15 @@ class CustomUserViewSet(ModelViewSet):
     def resend_activation(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.instance
+        user = serializer.get_user(is_active=False)
 
-        context = {"user": user}
-        to = [get_user_email(user)]
+        if not settings.SEND_ACTIVATION_EMAIL:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         if user:
-            settings.EMAIL.activation(
-                self.request, context).send_activation.delay(to)
+            context = {"user": user}
+            to = [get_user_email(user)]
+            settings.EMAIL.activation(self.request, context).send(to)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -212,13 +210,11 @@ class CustomUserViewSet(ModelViewSet):
     def reset_password(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.user
+        user = serializer.get_user()
 
         if user:
-            context = {"user": user}
-            to = [get_user_email(user)]
-            settings.EMAIL.password_reset(
-                self.request, context).send_password_reset.delay(to)
+            # TODO: add celery task to send email for password reset
+            pass
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -232,11 +228,37 @@ class CustomUserViewSet(ModelViewSet):
             serializer.user.last_login = now()
         serializer.user.save()
 
-        if settings.PASSWORD_CHANGED_EMAIL_CONFIRMATION:
-            context = {"user": serializer.user}
-            to = [get_user_email(serializer.user)]
-            settings.EMAIL.password_changed_confirmation(
-                self.request, context
-            ).send_password_changed.delay(to)
+        # TODO: add celery task to send password reset confirmation
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(["post"], detail=False,
+            url_path=f"reset_{User.USERNAME_FIELD}")  # type: ignore
+    def reset_username(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.get_user()
+
+        if user:
+            # TODO: add celery task to send email for username reset
+            pass
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(["post"], detail=False,
+            url_path=f"reset_{User.USERNAME_FIELD}_confirm")  # type: ignore
+    def reset_username_confirm(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        new_username = serializer.data["new_" +
+                                       User.USERNAME_FIELD]  # type: ignore
+
+        setattr(serializer.user, User.USERNAME_FIELD,  # type: ignore
+                new_username)
+        if hasattr(serializer.user, "last_login"):
+            serializer.user.last_login = now()
+        serializer.user.save()
+
+        # TODO: add celery task to send username reset confirmation
 
         return Response(status=status.HTTP_204_NO_CONTENT)

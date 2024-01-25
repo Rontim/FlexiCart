@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-color: #f1f1f1;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        box-sizing: border-box;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+      p {
+        font-size: 16px;
+        color: #000;
+      }
+
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        font-size: 16px;
+        margin: 0 auto;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    </style>
+    <title>Account activation on {{ site_name }}</title>
+  </head>
+  <body>
+    <p>
+      You're receiving this email because you need to finish activation process
+      on {{ site_name }}
+    </p>
+
+    <p>Please click the button below to activate your account</p>
+
+    <button>
+      <a href="{{ protocol }}:/{{ domain }}/{{ url|safe }}">Activate account</a>
+    </button>
+
+    <p>Thanks for using our site!</p>
+
+    <p>The {{ site_name }} team</p>
+  </body>
+</html>

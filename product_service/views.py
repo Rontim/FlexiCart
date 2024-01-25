@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from logger_conf import configure_logger
-from .models import Category, Product
-from .serializers import CategorySerializer, ProductSerializer, ProductDetailSerializer
+from .models import Category, ParentCategory, Product
+from .serializers import CategorySerializer, ParentCategorySerializer, ProductSerializer, ProductDetailSerializer
 
 
 logger = configure_logger()
@@ -63,3 +63,11 @@ class ProductRetrieveUpdate(APIView):
         product = self.get_object(slug)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CategoryList(APIView):
+    def get(self, request, format=None):
+        parentCategory = ParentCategory.objects.all()
+        serializer = ParentCategorySerializer(parentCategory, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

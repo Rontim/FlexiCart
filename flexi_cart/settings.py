@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     "django_celery_results",  # Celery Results for Django Admin
 
     # Manage Apps
-    'user_service',
+    'account_service',
     'product_service',
-
+    'order_service',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
@@ -170,7 +170,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'user_service.User'
+AUTH_USER_MODEL = 'account_service.UserAccount'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -203,30 +203,28 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(weeks=1),
 }
 
-DJOSER = {
-    'LOGIN_FIELD': 'email',
-    'USER_ID_FIELD': 'username',
-    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SEND_CONFIRMATION_EMAIL': True,
-    'SET_PASSWORD_RETYPE': True,
-    'ACTIVATION_URL': 'auth/users/activation/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
 
-    'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
+DJOSER = {
+    'USER_ID_FIELD': 'username',
+    'LOGIN_FIELD': 'email',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
+    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'auth/reset_password_confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'auth/reset_username_confirm/{uid}/{token}',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'SERIALIZERS': {
-        'user_create': 'user_service.serializers.UserCreateSerializer',
-        'user': 'user_service.serializers.UserSerializer',
-    },
-    'EMAIL': {
-        'activation': 'user_service.tasks.ActivationEmail',
-        'confirmation': 'user_service.tasks.ConfirmationEmail',
-        'password_reset': 'user_service.tasks.PasswordResetEmail',
-        'password_changed_confirmation': 'user_service.tasks.PasswordChangedConfirmationEmail',
-        'username_changed_confirmation': 'user_service.task.UsernameChangedConfirmationEmail',
-        'username_reset': 'user_service.tasks.UsernameResetEmail',
+        'user_create': 'account_service.serializers.UserAccountCreateSerializer',
+        'user': 'account_service.serializers.UserAccountSerializer',
     },
     'PERMISSIONS': {
-        "user_list": ["rest_framework.permissions.AllowAny"],
+        'user': ['rest_framework.permissions.AllowAny'],
+        'user_create': ['rest_framework.permissions.AllowAny'],
+        'activation': ['rest_framework.permissions.AllowAny'],
+        'user_list': ['rest_framework.permissions.AllowAny'],
     },
+
 }

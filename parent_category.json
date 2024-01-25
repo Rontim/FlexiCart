@@ -1,0 +1,72 @@
+[
+{
+  "model": "product_service.parentcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Electronics"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Clothing and Fashion"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Home and Furniture"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Beauty and Personal Care"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 5,
+  "fields": {
+    "name": "Sports and Outdoors"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 6,
+  "fields": {
+    "name": "Books and Stationery"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 7,
+  "fields": {
+    "name": "Toys and Games"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 8,
+  "fields": {
+    "name": "Health and Wellness"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 9,
+  "fields": {
+    "name": "Jewelry and Accessories"
+  }
+},
+{
+  "model": "product_service.parentcategory",
+  "pk": 10,
+  "fields": {
+    "name": "Automotive"
+  }
+}
+]
