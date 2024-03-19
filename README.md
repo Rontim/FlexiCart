@@ -26,7 +26,7 @@ FlexiCart is an online shopping cart application built using Python and Django. 
 
 ## Project Stracture
 
-The project is made up of microservices; each service is a Django REST API.The frontend is a React application that consumes the APIs. The frontend and backend are containerized using Docker. The services are orchestrated using Docker Compose. And messages are passed between the services using RabbitMQ.
+The project is made up of microservices; each service is a Django REST API.The frontend is a React application that consumes the APIs. The frontend and backend are containerized using Docker. The services are orchestrated using Docker Compose. And messages are passed between the services using RabbitMQ and Celery.
 
 * **frontend Service** - React frontend and React Native mobile app
 * **Users Service** - Django REST API for user authentication with Djoser
