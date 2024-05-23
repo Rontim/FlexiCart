@@ -1,4 +1,5 @@
 from email.mime import image
+from pyexpat import model
 from unicodedata import category
 from venv import create
 from rest_framework import serializers
@@ -65,3 +66,17 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+
+class ProductListSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    # image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ('name', 'description', 'slug',
+                  'price', 'category', 'brand', 'image')
+
+    # def get_image(self, obj):
+    #     if obj.image:
+    #         return

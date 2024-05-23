@@ -7,4 +7,5 @@ urlpatterns = [
          name='product-retrieve-update-delete'),
 
     path('category/', CategoryList.as_view(), name='category-list'),
+
 ]

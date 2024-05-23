@@ -1,5 +1,4 @@
 from collections.abc import Iterable
-from enum import unique
 import hashlib
 from django.db import models
 # from django.contrib.auth import get_user_model
@@ -13,9 +12,32 @@ def product_image_path(instance, filename):
 
 class ParentCategory(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        base_slug = slugify(self.name)
+
+        if not self.slug:
+            proposed_slug = f"{base_slug}-{self.pk}" if self.pk is not None else base_slug
+
+            existing_slugs = set(ParentCategory.objects.filter(
+                slug__startswith=proposed_slug).values_list('slug', flat=True))
+
+            counter = 1
+            while proposed_slug in existing_slugs:
+                proposed_slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = self.hash_slug(proposed_slug)
+
+        super().save(*args, **kwargs)
+
+    def hash_slug(self, value):
+        hash_object = hashlib.sha256(value.encode())
+        return hash_object.hexdigest()
 
 
 class Category(models.Model):
@@ -73,6 +95,21 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
     def hash_slug(self, value):
-        # Use SHA-256 for hashing, you can choose a different hash function if needed
         hash_object = hashlib.sha256(value.encode())
         return hash_object.hexdigest()
+
+
+class Offers(models.Model):
+    class OfferType(models.TextChoices):
+        PERCENTAGE = 'PERCENTAGE'
+        PRICE = 'PRICE'
+        BUY_ONE_GET_ONE = 'BUY_ONE_GET_ONE'
+        BUY_TWO_GET_ONE = 'BUY_TWO_GET_ONE'
+
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, null=True, blank=True)
+    offer_type = models.CharField(
+        max_length=255, choices=OfferType.choices, default=OfferType.PERCENTAGE)
+
+    def __str__(self):
+        return f'{self.product.name} - {self.offer_type}'   # type: ignore

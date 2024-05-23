@@ -4,7 +4,7 @@ import profile_image from "../../assets/profile_pic.png";
 import SearchBar from "../Home/SearchBar";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Avatar, Button, DarkThemeToggle, Dropdown } from "flowbite-react";
+import { Avatar, DarkThemeToggle, Dropdown } from "flowbite-react";
 
 function NavBar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -30,7 +30,12 @@ function NavBar() {
       className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium dark:text-white    rounded-lg focus:ring-0 focus:outline-none "
     >
       {authenticated ? (
-        <Avatar alt="User settings" img={profile_image} rounded />
+        <Avatar
+          alt="User settings"
+          img={profile_image}
+          className="mx-3"
+          rounded
+        />
       ) : (
         <svg
           className="w-[32px] h-[32px] text-gray-800 dark:text-white"
@@ -53,10 +58,10 @@ function NavBar() {
   const servicesDropdown = () => (
     <button
       type="button"
-      className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-primary  rounded-lg focus:ring-0 focus:outline-none "
+      className="inline-flex items-center py-2 px-3 ms-2 text-sm font-medium text-white bg-primary  rounded-lg focus:ring-0 focus:outline-none "
     >
       <svg
-        className="w-[28px] h-[28px] text-white"
+        className="w-[28px] h-[28px] mx-3 text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -85,15 +90,15 @@ function NavBar() {
 
   return (
     <header
-      className={`header left-0 top-0 z-40 flex w-full items-center px-10 py-2 ${
+      className={`header left-0 top-0 z-40 flex w-full items-center px-0 py-2 ${
         sticky
           ? "fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition dark:bg-gray-dark dark:shadow-sticky-dark"
           : "absolute bg-transparent"
       }`}
     >
       <div className="container">
-        <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-60 max-w-full px-4 xl:mr-12">
+        <div className="relative -mx-5 flex items-center justify-between">
+          <div className="w-60 max-w-full xl:mr-12">
             <NavLink to="/" className="-m-1.5 p-1.5 ps-5">
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 FlexiCart
@@ -181,24 +186,16 @@ function NavBar() {
                       </Dropdown.Item>
                     )}
                     {authenticated && (
-                      <Dropdown.Item>
-                        <Button
-                          className="w-full"
-                          size="sm"
-                          onClick={() => logout()}
-                        >
-                          Sign out
-                        </Button>
-                      </Dropdown.Item>
+                      <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
                     )}
                   </Dropdown>
                 </li>
                 <li>
                   <Dropdown label={servicesDropdown()} size="sm">
-                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                    <Dropdown.Item>Cart</Dropdown.Item>
+                    <Dropdown.Item>Orders</Dropdown.Item>
+                    <Dropdown.Item>Wishlist</Dropdown.Item>
                     <Dropdown.Item>Settings</Dropdown.Item>
-                    <Dropdown.Item>Earnings</Dropdown.Item>
-                    <Dropdown.Item>Sign out</Dropdown.Item>
                   </Dropdown>
                 </li>
               </ul>
@@ -249,11 +246,7 @@ function NavBar() {
                 </Dropdown.Item>
               )}
               {authenticated && (
-                <Dropdown.Item>
-                  <Button className="w-full" size="sm" onClick={() => logout()}>
-                    Sign out
-                  </Button>
-                </Dropdown.Item>
+                <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
               )}
             </Dropdown>
             <Dropdown label={servicesDropdown()} inline arrowIcon={false}>

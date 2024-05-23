@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @layer components {
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .header-logo {
+      @apply py-5 lg:py-2;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+}

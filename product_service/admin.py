@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, ParentCategory, Product
+from .models import Category, ParentCategory, Product, Offers
 
 
 @admin.register(ParentCategory)
@@ -36,3 +36,8 @@ class ProductAdmin(admin.ModelAdmin):
         return ''
 
     image_tag.short_description = 'Image'
+
+
+@admin.register(Offers)
+class OffersAdmin(admin.ModelAdmin):
+    pass

@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   useVerifyUser();
 
   return (
-    <div className="content-normal bg-white dark:bg-gray-900">
+    <div className="content-normal px-10 bg-white dark:bg-gray-900">
       <NavBar />
       {children}
       <Footer />

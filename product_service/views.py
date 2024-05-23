@@ -1,12 +1,15 @@
+from email.mime import base
+from time import sleep
 from django.http import Http404
 from requests import delete
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from django.template.defaultfilters import slugify
+import hashlib
 from logger_conf import configure_logger
 from .models import Category, ParentCategory, Product
-from .serializers import CategorySerializer, ParentCategorySerializer, ProductSerializer, ProductDetailSerializer
+from .serializers import CategorySerializer, ParentCategorySerializer, ProductListSerializer, ProductSerializer, ProductDetailSerializer
 
 
 logger = configure_logger()
@@ -15,7 +18,7 @@ logger = configure_logger()
 class ProductCreateListView(APIView):
     def get(self, request, format=None):
         products = Product.objects.all()
-        serializer = ProductDetailSerializer(products, many=True)
+        serializer = ProductListSerializer(products, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
