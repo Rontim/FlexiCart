@@ -1,6 +1,6 @@
 from datetime import timedelta
 import sys
-import dj_database_url
+# import dj_database_url
 import dotenv
 from os import getenv, path
 from pathlib import Path
@@ -130,16 +130,16 @@ if DEVELOPMENT_MODE is True:
             'NAME': getenv('DB_NAME', 'flexi_cart'),
             'USER': getenv('DB_USER', 'postgres'),
             'PASSWORD': getenv('DB_PASSWORD', 'postgres'),
-            'HOST': getenv('POS_HOST', 'localhost'),
+            'HOST': getenv('DB_HOST', 'localhost'),
             'PORT': getenv('DB_PORT', '5432'),
         }
     }
 elif len(sys.argv) > 0 and sys.argv[1] == 'collectstatic':
     if getenv('DATABASE_URL', None) is None:
         raise Exception('DATABASE_URL not set')
-    DATABASES = {
-        'default': dj_database_url.config(default=getenv('DATABASE_URL'))
-    }
+    # DATABASES = {
+    #     'default': dj_database_url.config(default=getenv('DATABASE_URL'))
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

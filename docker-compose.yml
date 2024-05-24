@@ -3,17 +3,18 @@ version: '3.9'
 services:
   backend:
     image: backend
-    container_name: django_backend
+    container_name: backend_service
     build:
-      context: .
+      context: ./backend_service
       dockerfile: Dockerfile
     env_file:
       - .env
-    command: python manage.py runserver
-    ports:
-      - "8000:8000"
+    command: gunicorn flexicart.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - 8000
     volumes:
-      - .:/app
+      - static_volume:/home/app/api/static
+      - media_volume:/home/app/api/media
     depends_on:
       - db
 
@@ -26,6 +27,25 @@ services:
       POSTGRES_PASSWORD: password123
       POSTGRES_DB: flexicart
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+  nginx:
+    build:
+      context: ./nginx_service
+      dockerfile: Dockerfile
+    container_name: nginx_service
+    volumes:
+      - static_volume:/home/app/api/static
+      - media_volume:/home/app/api/media
+    restart: always
+    ports:
+      - 1337:80
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:
+  static_volume:
+  media_volume:
