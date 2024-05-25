@@ -45,11 +45,18 @@ INSTALLED_APPS = [
     'order_service',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3030',
-    'http://localhost:5173'
-]
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3030',
+#     'http://localhost:5173',
+#     'http://localhost:1337',
+# ]
+# CORS_WHITELIST = [
+#     'http://localhost:3030',
+#     'http://localhost:5173',
+#     'http://localhost:1337',
+# ]
 
 
 MIDDLEWARE = [
@@ -127,7 +134,7 @@ if DEVELOPMENT_MODE is True:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': getenv('DB_NAME', 'flexi_cart'),
+            'NAME': getenv('DB_NAME', 'flexicart'),
             'USER': getenv('DB_USER', 'postgres'),
             'PASSWORD': getenv('DB_PASSWORD', 'postgres'),
             'HOST': getenv('DB_HOST', 'localhost'),
@@ -176,6 +183,7 @@ AUTH_USER_MODEL = 'account_service.UserAccount'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'  # STATIC FILES URL
+STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'  # MEDIA FILES URL
 MEDIA_ROOT = path.join(BASE_DIR, "media")  # MEDIA FILES ROOT

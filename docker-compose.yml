@@ -8,8 +8,8 @@ services:
       context: ./backend_service
       dockerfile: Dockerfile
     env_file:
-      - .env
-    command: gunicorn flexicart.wsgi:application --bind 0.0.0.0:8000
+      - ./backend_service/.env
+    command: gunicorn flexi_cart.wsgi:application --bind 0.0.0.0:8000
     expose:
       - 8000
     volumes:
@@ -22,28 +22,50 @@ services:
     container_name: postgres_db
     image: postgres:16.1-alpine
     restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password123
-      POSTGRES_DB: flexicart
+    env_file:
+      - ./backend_service/.env
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - 5432:5432
 
   nginx:
     build:
-      context: ./nginx_service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.nginx
     container_name: nginx_service
     volumes:
       - static_volume:/home/app/api/static
       - media_volume:/home/app/api/media
     restart: always
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
     ports:
       - 1337:80
     depends_on:
       - backend
+  redis:
+    container_name: redis_service
+    image: redis:alpine
+    expose:
+      - 6379
+
+  celery:
+    image: backend
+    container_name: celery_service
+    build:
+      context: ./backend_service
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend_service/.env
+    command: celery -A flexi_cart worker --loglevel=info --concurrency=1 -E
+    # entrypoint: 
+    # volumes:
+    #   - static_volume:/home/app/api/static
+    #   - media_volume:/home/app/api/media
+    depends_on:
+      - db
+      - redis
 
 volumes:
   postgres-data:
