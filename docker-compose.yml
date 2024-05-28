@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ./backend_service/.env
-    command: gunicorn flexi_cart.wsgi:application --bind 0.0.0.0:8000
+    entrypoint: ./entrypoint.sh
     expose:
       - 8000
     volumes:
@@ -51,15 +51,16 @@ services:
       - 6379
 
   celery:
-    image: backend
+    image: celery:lts
     container_name: celery_service
     build:
       context: ./backend_service
       dockerfile: Dockerfile
     env_file:
       - ./backend_service/.env
-    command: celery -A flexi_cart worker --loglevel=info --concurrency=1 -E
-    # entrypoint: 
+    entrypoint: ./worker-entrypoint.sh
+    # user: app
+    # command: celery -A flexi_cart worker --loglevel=info --concurrency=1 -E
     # volumes:
     #   - static_volume:/home/app/api/static
     #   - media_volume:/home/app/api/media

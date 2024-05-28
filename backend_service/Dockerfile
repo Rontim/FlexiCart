@@ -9,13 +9,7 @@ ENV APP_HOME=${HOME}/app/api
 RUN mkdir -p ${APP_HOME}
 WORKDIR ${APP_HOME}
 
-RUN apk update && apk add \
-    --no-cache \
-    libpq \
-    postgresql-dev \
-    build-base \
-    python3-dev \
-    gcc musl-dev
+RUN apk update && apk add --no-cache libpq postgresql-dev build-base python3-dev gcc musl-dev
 
 RUN pip install --upgrade pip
 RUN pip install psycopg2-binary
@@ -35,4 +29,4 @@ RUN chmod +x ./entrypoint.sh
 RUN chmod +x ./worker-entrypoint.sh
 
 # Set the entrypoint
-ENTRYPOINT ["./entrypoint.sh"]
+# ENTRYPOINT ["./entrypoint.sh"]

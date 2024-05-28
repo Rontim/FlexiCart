@@ -31,7 +31,7 @@ class ParentCategory(models.Model):
                 proposed_slug = f"{base_slug}-{counter}"
                 counter += 1
 
-            self.slug = self.hash_slug(proposed_slug)
+        self.slug = base_slug  # self.hash_slug(proposed_slug)
 
         super().save(*args, **kwargs)
 
@@ -74,7 +74,7 @@ class Product(models.Model):
         upload_to=product_image_path, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} - {self.price} \n -{self.description}'
+        return f'{self.name}'
 
     def save(self, *args, **kwargs):
         base_slug = slugify(self.name)
@@ -101,15 +101,14 @@ class Product(models.Model):
 
 class Offers(models.Model):
     class OfferType(models.TextChoices):
-        PERCENTAGE = 'PERCENTAGE'
-        PRICE = 'PRICE'
+        DISCOUNT = 'DISCOUNT'
         BUY_ONE_GET_ONE = 'BUY_ONE_GET_ONE'
         BUY_TWO_GET_ONE = 'BUY_TWO_GET_ONE'
 
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, null=True, blank=True)
     offer_type = models.CharField(
-        max_length=255, choices=OfferType.choices, default=OfferType.PERCENTAGE)
+        max_length=255, choices=OfferType.choices, default=OfferType.DISCOUNT)
 
     def __str__(self):
         return f'{self.product.name} - {self.offer_type}'   # type: ignore

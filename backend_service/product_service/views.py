@@ -74,3 +74,15 @@ class CategoryList(APIView):
         serializer = ParentCategorySerializer(parentCategory, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ProductByParentCategory(APIView):
+    def get(self, request, category, format=None):
+        try:
+            category = ParentCategory.objects.get(slug=category)
+        except Category.DoesNotExist:
+            raise Http404
+        products = Product.objects.filter(category__parent=category)
+        serializer = ProductListSerializer(products, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

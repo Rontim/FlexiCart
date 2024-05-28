@@ -7,7 +7,11 @@ from .models import Category, ParentCategory, Product, Offers
 class ParentCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-    actions = ['delete_selected', 'delete_all', '']
+    actions = ['create_slugs']
+
+    def create_slugs(self, request, queryset):
+        for parent_category in queryset:
+            parent_category.save()
 
 
 @admin.register(Category)
@@ -40,4 +44,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Offers)
 class OffersAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'offer_type')
+    search_fields = ('product',)
+    list_filter = ('offer_type',)

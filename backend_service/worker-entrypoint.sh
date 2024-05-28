@@ -7,4 +7,4 @@ done
 
 echo "Starting Celery worker with autoreload..."
 
-celery -A flexi_cart worker --loglevel=info --autoreload -E
+celery -A flexi_cart worker --loglevel=info --concurrency=1 -E
