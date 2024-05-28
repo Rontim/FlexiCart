@@ -1,3 +1,4 @@
+import 'package:flexi_cart_mobile/utils/constants/colors.dart';
 import 'package:flexi_cart_mobile/utils/theme/custom_themes/appbar_theme.dart';
 import 'package:flexi_cart_mobile/utils/theme/custom_themes/bottom_sheet_theme.dart';
 import 'package:flexi_cart_mobile/utils/theme/custom_themes/checkbox_theme.dart';
@@ -15,8 +16,9 @@ class FAppTheme {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
-    primaryColor: Colors.blue,
-    scaffoldBackgroundColor: Colors.white,
+    primaryColor: FColors.primaryColor,
+    disabledColor: FColors.grey,
+    scaffoldBackgroundColor: FColors.white,
     textTheme: FTextTheme.lightTextTheme,
     elevatedButtonTheme: FElevatedButtonTheme.lightElevatedButtonTheme,
     outlinedButtonTheme: FOutlinedButtonTheme.lightOutlinedButtonTheme,
@@ -30,8 +32,9 @@ class FAppTheme {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
-    primaryColor: Colors.blue,
-    scaffoldBackgroundColor: Colors.black,
+    disabledColor: FColors.grey,
+    primaryColor: FColors.primaryColor,
+    scaffoldBackgroundColor: FColors.black,
     textTheme: FTextTheme.darkTextTheme,
     elevatedButtonTheme: FElevatedButtonTheme.darkElevatedButtonTheme,
     outlinedButtonTheme: FOutlinedButtonTheme.darkOutlinedButtonTheme,

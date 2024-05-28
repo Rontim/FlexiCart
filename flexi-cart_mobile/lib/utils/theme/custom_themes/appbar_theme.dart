@@ -1,3 +1,5 @@
+import 'package:flexi_cart_mobile/utils/constants/colors.dart';
+import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class FAppBarTheme {
@@ -9,9 +11,9 @@ class FAppBarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: Colors.black, size: 24.0),
-    actionsIconTheme: IconThemeData(color: Colors.black, size: 24.0),
-    titleTextStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.black),
+    iconTheme: IconThemeData(color: FColors.black, size: FSizes.iconMd),
+    actionsIconTheme: IconThemeData(color: FColors.black, size: FSizes.iconMd),
+    titleTextStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600, color: FColors.black),
   );
 
   static const AppBarTheme darkAppBarTheme = AppBarTheme(
@@ -20,8 +22,8 @@ class FAppBarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: Colors.black, size: 24.0),
-    actionsIconTheme: IconThemeData(color: Colors.white, size: 24.0),
-    titleTextStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600, color: Colors.white),
+    iconTheme: IconThemeData(color: FColors.black, size: FSizes.iconMd),
+    actionsIconTheme: IconThemeData(color: FColors.white, size: FSizes.iconMd),
+    titleTextStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600, color: FColors.white),
   );
 }

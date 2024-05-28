@@ -1,3 +1,4 @@
+import 'package:flexi_cart_mobile/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class FBottomSheetTheme {
@@ -5,15 +6,15 @@ class FBottomSheetTheme {
 
   static BottomSheetThemeData lightBottomSheetTheme = BottomSheetThemeData(
     showDragHandle: true,
-    backgroundColor: Colors.white,
-    modalBackgroundColor: Colors.white,
+    backgroundColor: FColors.white,
+    modalBackgroundColor: FColors.white,
     constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
   );
   static BottomSheetThemeData darkBottomSheetTheme = BottomSheetThemeData(
     showDragHandle: true,
-    backgroundColor: Colors.black,
-    modalBackgroundColor: Colors.black,
+    backgroundColor: FColors.black,
+    modalBackgroundColor: FColors.black,
     constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
   );
