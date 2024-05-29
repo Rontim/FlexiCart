@@ -1,4 +1,4 @@
-import 'package:flexi_cart_mobile/features/authentication/contollers/onboarding/onboarding_controller.dart';
+import 'package:flexi_cart_mobile/features/authentication/contollers/onboarding_controller.dart';
 import 'package:flexi_cart_mobile/utils/constants/colors.dart';
 import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flexi_cart_mobile/utils/device/device_utility.dart';
