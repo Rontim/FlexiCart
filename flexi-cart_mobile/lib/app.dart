@@ -1,3 +1,4 @@
+import 'package:flexi_cart_mobile/features/authentication/screens/onboarding/onboarding_screen.dart';
 import 'package:flexi_cart_mobile/utils/constants/text_strings.dart';
 import 'package:flexi_cart_mobile/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,7 @@ class App extends StatelessWidget {
       theme: FAppTheme.lightTheme,
       darkTheme: FAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'Awesome! 🎊 Project Structure is set up and running. \n Happy T Coding 🎊',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+      home: const OnboardingScreen(),
     );
   }
 }
