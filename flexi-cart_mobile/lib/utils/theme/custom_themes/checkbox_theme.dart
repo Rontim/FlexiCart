@@ -7,15 +7,15 @@ class FCheckboxTheme {
 
   static CheckboxThemeData lightCheckboxTheme = CheckboxThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(FSizes.xs)),
-    checkColor: MaterialStateColor.resolveWith((states) {
-      if (states.contains(MaterialState.disabled)) {
+    checkColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.disabled)) {
         return FColors.white;
       } else {
         return FColors.black;
       }
     }),
-    fillColor: MaterialStateColor.resolveWith((states) {
-      if (states.contains(MaterialState.disabled)) {
+    fillColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.disabled)) {
         return FColors.primaryColor;
       } else {
         return Colors.transparent;
@@ -24,15 +24,15 @@ class FCheckboxTheme {
   );
   static CheckboxThemeData darkCheckboxTheme = CheckboxThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(FSizes.xs)),
-    checkColor: MaterialStateColor.resolveWith((states) {
-      if (states.contains(MaterialState.disabled)) {
+    checkColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.disabled)) {
         return FColors.white;
       } else {
         return FColors.black;
       }
     }),
-    fillColor: MaterialStateColor.resolveWith((states) {
-      if (states.contains(MaterialState.disabled)) {
+    fillColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.disabled)) {
         return FColors.primaryColor;
       } else {
         return Colors.transparent;

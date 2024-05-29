@@ -1,13 +1,13 @@
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#272727"
-  image: assets/logos/flexicart-logo-transparent.png
-  image_dark: assets/logos/flexicart-logo-transparent.png
+  image: assets/logos/flexicart-logo.png
+  image_dark: assets/logos/flexicart-logo.png
 
   android_12:
     color: "#ffffff"
     color_dark: "#272727"
-    image: assets/logos/flexicart-logo-transparent.png
-    image_dark: assets/logos/flexicart-logo-transparent.png
+    image: assets/logos/flexicart-logo.png
+    image_dark: assets/logos/flexicart-logo.png
 
   web: false

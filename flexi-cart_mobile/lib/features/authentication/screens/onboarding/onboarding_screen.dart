@@ -1,18 +1,12 @@
-import 'package:flexi_cart_mobile/features/authentication/contollers/onboarding_controller.dart';
+import 'package:flexi_cart_mobile/features/authentication/controllers/onboarding_controller.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/onboarding/widgets/onbaording_dot_navigation.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/onboarding/widgets/onbaording_pages.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
-import 'package:flexi_cart_mobile/utils/constants/colors.dart';
 import 'package:flexi_cart_mobile/utils/constants/image_strings.dart';
-import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flexi_cart_mobile/utils/constants/text_strings.dart';
-import 'package:flexi_cart_mobile/utils/device/device_utility.dart';
-import 'package:flexi_cart_mobile/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
