@@ -1,6 +1,6 @@
 # flexi_cart_mobile
 
-An E-Commerce microserve mobile app
+An e-commerce microservice app
 
 ## Getting Started
 
