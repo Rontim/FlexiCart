@@ -27,6 +27,11 @@ class FAppTheme {
     checkboxTheme: FCheckboxTheme.lightCheckboxTheme,
     chipTheme: FChipTheme.lightChipTheme,
     inputDecorationTheme: FTextFormFieldTheme.lightInputDecorationTheme,
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: FColors.white,
+      elevation: 0,
+      indicatorColor: FColors.black.withOpacity(0.1),
+    ),
   );
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
@@ -43,5 +48,12 @@ class FAppTheme {
     checkboxTheme: FCheckboxTheme.darkCheckboxTheme,
     chipTheme: FChipTheme.darkChipTheme,
     inputDecorationTheme: FTextFormFieldTheme.darkInputDecorationTheme,
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: FColors.black,
+      elevation: 0,
+      indicatorColor: Colors.white.withOpacity(
+        0.1,
+      ),
+    ),
   );
 }

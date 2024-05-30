@@ -1,3 +1,4 @@
+import 'package:flexi_cart_mobile/bottom_navigation_menu.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/password/forget_password_screen.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/signup/signup.dart';
 import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
@@ -56,7 +57,10 @@ class LoginScreenForm extends StatelessWidget {
             // Sign in Button
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () {}, child: const Text(FTexts.signIn)),
+              child: ElevatedButton(
+                onPressed: () => Get.to(() => const BottomNavigationMenu()),
+                child: const Text(FTexts.signIn),
+              ),
             ),
             const SizedBox(height: FSizes.spaceBtwItems),
 
