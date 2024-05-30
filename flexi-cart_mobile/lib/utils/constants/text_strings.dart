@@ -6,7 +6,7 @@ class FTexts {
   static const String done = "Done";
   static const String submit = "Submit";
   static const String appName = "FlexiCart";
-  static const String tContinue = "Continue";
+  static const String fContinue = "Continue";
 
   // -- OnBoarding Texts
   static const String onBoardingTitle1 = "Choose your product";
