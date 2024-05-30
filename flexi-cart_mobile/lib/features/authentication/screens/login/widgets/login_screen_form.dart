@@ -1,6 +1,8 @@
+import 'package:flexi_cart_mobile/features/authentication/screens/signup/signup.dart';
 import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flexi_cart_mobile/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginScreenForm extends StatelessWidget {
@@ -55,7 +57,7 @@ class LoginScreenForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () => Get.to(() => const SignUpScreen()),
                 child: const Text(FTexts.createAccount),
               ),
             ),

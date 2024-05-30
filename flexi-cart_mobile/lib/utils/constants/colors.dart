@@ -4,7 +4,7 @@ class FColors {
   FColors._();
 
   // App basic colors
-  static const Color primaryColor = Color(0xFF4B68FF);
+  static const Color primaryColor = Color(0xFF0f3054);
   static const Color secondaryColor = Color(0xFFFFE24B);
   static const Color accentColor = Color(0xFFB0C7FF);
 
@@ -24,7 +24,7 @@ class FColors {
   static Color containerDark = FColors.white.withOpacity(0.1);
 
   // Button colors
-  static const Color buttonPrimary = Color(0xFF4B68FF);
+  static const Color buttonPrimary = Color(0xFF0f3054);
   static const Color buttonSecondary = Color(0xFF6C757D);
   static const Color buttonDisabled = Color(0xFFC4C4C4);
 
