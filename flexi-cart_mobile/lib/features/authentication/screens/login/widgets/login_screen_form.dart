@@ -1,3 +1,4 @@
+import 'package:flexi_cart_mobile/features/authentication/screens/password/forget_password_screen.dart';
 import 'package:flexi_cart_mobile/features/authentication/screens/signup/signup.dart';
 import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flexi_cart_mobile/utils/constants/text_strings.dart';
@@ -17,15 +18,15 @@ class LoginScreenForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: FSizes.spaceBtwSections),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextFormField(
+              decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
                 label: Text(FTexts.email),
               ),
             ),
             const SizedBox(height: FSizes.spaceBtwInputFields),
-            const TextField(
-              decoration: InputDecoration(
+            TextFormField(
+              decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.password_check),
                 label: Text(FTexts.password),
                 suffixIcon: Icon(Iconsax.eye_slash),
@@ -41,7 +42,13 @@ class LoginScreenForm extends StatelessWidget {
                     const Text(FTexts.rememberMe),
                   ],
                 ),
-                TextButton(onPressed: () {}, child: const Text(FTexts.forgetPassword)),
+                TextButton(
+                  onPressed: () => Get.to(
+                    () => const ForgetPasswordScreen(),
+                    transition: Transition.leftToRightWithFade,
+                  ),
+                  child: const Text(FTexts.forgetPassword),
+                ),
               ],
             ),
             const SizedBox(height: FSizes.spaceBtwSections),
