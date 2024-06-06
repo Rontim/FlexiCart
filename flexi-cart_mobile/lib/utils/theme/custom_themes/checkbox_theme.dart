@@ -8,7 +8,8 @@ class FCheckboxTheme {
 
   /// Customizable Light Text Theme
   static CheckboxThemeData lightCheckboxTheme = CheckboxThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(FSizes.xs)),
+    shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(FSizes.xs)),
     checkColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
         return FColors.white;
@@ -18,7 +19,7 @@ class FCheckboxTheme {
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return FColors.primaryColor;
+        return FColors.primary;
       } else {
         return Colors.transparent;
       }
@@ -27,7 +28,8 @@ class FCheckboxTheme {
 
   /// Customizable Dark Text Theme
   static CheckboxThemeData darkCheckboxTheme = CheckboxThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(FSizes.xs)),
+    shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(FSizes.xs)),
     checkColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
         return FColors.white;
@@ -37,7 +39,7 @@ class FCheckboxTheme {
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return FColors.primaryColor;
+        return FColors.primary;
       } else {
         return Colors.transparent;
       }

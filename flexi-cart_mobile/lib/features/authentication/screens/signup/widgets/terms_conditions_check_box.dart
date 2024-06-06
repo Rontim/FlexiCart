@@ -32,8 +32,8 @@ class FTermsConditionsCheckBox extends StatelessWidget {
                 text: FTexts.privacyPolicy,
                 style: Theme.of(context).textTheme.bodyMedium!.apply(
                       decoration: TextDecoration.underline,
-                      color: dark ? FColors.white : FColors.primaryColor,
-                      decorationColor: dark ? FColors.white : FColors.primaryColor,
+                      color: dark ? FColors.white : FColors.primary,
+                      decorationColor: dark ? FColors.white : FColors.primary,
                     ),
               ),
               TextSpan(
@@ -44,8 +44,8 @@ class FTermsConditionsCheckBox extends StatelessWidget {
                 text: FTexts.termsOfUse,
                 style: Theme.of(context).textTheme.bodyMedium!.apply(
                       decoration: TextDecoration.underline,
-                      color: dark ? FColors.white : FColors.primaryColor,
-                      decorationColor: dark ? FColors.white : FColors.primaryColor,
+                      color: dark ? FColors.white : FColors.primary,
+                      decorationColor: dark ? FColors.white : FColors.primary,
                     ),
               ),
             ],

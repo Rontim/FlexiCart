@@ -20,7 +20,7 @@ class FCircularContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FColors.primaryColor,
+      color: FColors.primary,
       padding: EdgeInsets.all(padding),
       child: Stack(
         children: [

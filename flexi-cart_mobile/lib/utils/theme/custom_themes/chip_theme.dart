@@ -7,7 +7,7 @@ class FChipTheme {
   static ChipThemeData lightChipTheme = ChipThemeData(
     disabledColor: FColors.grey.withOpacity(0.4),
     labelStyle: const TextStyle(color: FColors.black),
-    selectedColor: FColors.primaryColor,
+    selectedColor: FColors.primary,
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     checkmarkColor: FColors.white,
   );
@@ -15,7 +15,7 @@ class FChipTheme {
   static ChipThemeData darkChipTheme = const ChipThemeData(
     disabledColor: FColors.grey,
     labelStyle: TextStyle(color: FColors.white),
-    selectedColor: FColors.primaryColor,
+    selectedColor: FColors.primary,
     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     checkmarkColor: FColors.white,
   );
