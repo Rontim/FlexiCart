@@ -1,6 +1,4 @@
-import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/circular_containers.dart';
-import 'package:flexi_cart_mobile/common/widgets/custom_shapes/curved_edges/custom_curved_widget.dart';
-import 'package:flexi_cart_mobile/utils/constants/colors.dart';
+import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,39 +6,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FCustomCurvedWidget(
-              child: Container(
-                color: FColors.primary,
-                padding: const EdgeInsets.all(0),
-                child: SizedBox(
-                  height: 400,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: -50,
-                        right: -100,
-                        child: FCircularContainer(
-                          width: 200,
-                          height: 200,
-                          color: FColors.white.withOpacity(0.2),
-                        ),
-                      ),
-                      Positioned(
-                        top: 300,
-                        right: -150,
-                        child: FCircularContainer(
-                          width: 200,
-                          height: 200,
-                          color: FColors.white.withOpacity(0.2),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+            FPrimaryHeaderContainer(
+              child: Column(
+                children: [],
               ),
             ),
           ],
