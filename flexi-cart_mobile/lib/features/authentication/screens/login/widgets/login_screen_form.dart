@@ -58,7 +58,8 @@ class LoginScreenForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => Get.to(() => const BottomNavigationMenu()),
+                onPressed: () =>
+                    Get.offAll(() => const BottomNavigationMenu(), transition: Transition.fadeIn),
                 child: const Text(FTexts.signIn),
               ),
             ),
