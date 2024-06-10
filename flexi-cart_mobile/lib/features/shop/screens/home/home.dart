@@ -1,7 +1,7 @@
 import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:flexi_cart_mobile/common/widgets/image/rounded_image.dart';
 import 'package:flexi_cart_mobile/common/widgets/texts/section_header.dart';
+import 'package:flexi_cart_mobile/features/shop/screens/home/widgets/home_promo_slider.dart';
 import 'package:flexi_cart_mobile/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:flexi_cart_mobile/utils/constants/colors.dart';
 import 'package:flexi_cart_mobile/utils/constants/image_strings.dart';
@@ -52,8 +52,8 @@ class HomeScreen extends StatelessWidget {
             // Body - Banner, Products
             Padding(
               padding: EdgeInsets.all(FSizes.defaultSpace),
-              child: FRoundedImage(
-                imageUrl: FImages.banner7,
+              child: HomePromoSlider(
+                banners: [FImages.promoBanner1, FImages.promoBanner2, FImages.promoBanner3],
               ),
             ),
           ],
