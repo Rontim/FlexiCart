@@ -1,8 +1,10 @@
 import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:flexi_cart_mobile/common/widgets/image/rounded_image.dart';
 import 'package:flexi_cart_mobile/common/widgets/texts/section_header.dart';
 import 'package:flexi_cart_mobile/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:flexi_cart_mobile/utils/constants/colors.dart';
+import 'package:flexi_cart_mobile/utils/constants/image_strings.dart';
 import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Header - App Bar, Search Bar, Categories
             FPrimaryHeaderContainer(
               child: Column(
                 children: [
@@ -43,6 +46,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+
+            // Body - Banner, Products
+            Padding(
+              padding: EdgeInsets.all(FSizes.defaultSpace),
+              child: FRoundedImage(
+                imageUrl: FImages.banner7,
               ),
             ),
           ],
