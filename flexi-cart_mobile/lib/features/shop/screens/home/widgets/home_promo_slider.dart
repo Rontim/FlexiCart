@@ -7,8 +7,8 @@ import 'package:flexi_cart_mobile/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePromoSlider extends StatelessWidget {
-  const HomePromoSlider({
+class FHomePromoSlider extends StatelessWidget {
+  const FHomePromoSlider({
     super.key,
     required this.banners,
   });

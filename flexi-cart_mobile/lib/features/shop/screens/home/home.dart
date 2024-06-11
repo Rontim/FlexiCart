@@ -1,5 +1,6 @@
 import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:flexi_cart_mobile/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:flexi_cart_mobile/common/widgets/products/cards/vertical_card.dart';
 import 'package:flexi_cart_mobile/common/widgets/texts/section_header.dart';
 import 'package:flexi_cart_mobile/features/shop/screens/home/widgets/home_promo_slider.dart';
 import 'package:flexi_cart_mobile/features/shop/screens/home/widgets/home_appbar.dart';
@@ -52,8 +53,17 @@ class HomeScreen extends StatelessWidget {
             // Body - Banner, Products
             Padding(
               padding: EdgeInsets.all(FSizes.defaultSpace),
-              child: HomePromoSlider(
-                banners: [FImages.promoBanner1, FImages.promoBanner2, FImages.promoBanner3],
+              child: Column(
+                children: [
+                  // Slider banner
+                  FHomePromoSlider(
+                    banners: [FImages.promoBanner1, FImages.promoBanner2, FImages.promoBanner3],
+                  ),
+                  SizedBox(height: FSizes.spaceBtwSections),
+
+                  // Products
+                  FVerticalProductCard(),
+                ],
               ),
             ),
           ],
