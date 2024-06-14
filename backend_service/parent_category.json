@@ -3,70 +3,80 @@
   "model": "product_service.parentcategory",
   "pk": 1,
   "fields": {
-    "name": "Electronics"
+    "name": "Electronics",
+    "slug": "electronics"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 2,
   "fields": {
-    "name": "Clothing and Fashion"
+    "name": "Clothing and Fashion",
+    "slug": "clothing-and-fashion"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 3,
   "fields": {
-    "name": "Home and Furniture"
+    "name": "Home and Furniture",
+    "slug": "home-and-furniture"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 4,
   "fields": {
-    "name": "Beauty and Personal Care"
+    "name": "Beauty and Personal Care",
+    "slug": "beauty-and-personal-care"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 5,
   "fields": {
-    "name": "Sports and Outdoors"
+    "name": "Sports and Outdoors",
+    "slug": "sports-and-outdoors"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 6,
   "fields": {
-    "name": "Books and Stationery"
+    "name": "Books and Stationery",
+    "slug": "books-and-stationery"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 7,
   "fields": {
-    "name": "Toys and Games"
+    "name": "Toys and Games",
+    "slug": "toys-and-games"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 8,
   "fields": {
-    "name": "Health and Wellness"
+    "name": "Health and Wellness",
+    "slug": "health-and-wellness"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 9,
   "fields": {
-    "name": "Jewelry and Accessories"
+    "name": "Jewelry and Accessories",
+    "slug": "jewelry-and-accessories"
   }
 },
 {
   "model": "product_service.parentcategory",
   "pk": 10,
   "fields": {
-    "name": "Automotive"
+    "name": "Automotive",
+    "slug": "automotive"
   }
 }
 ]

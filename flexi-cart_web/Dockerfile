@@ -1,3 +1,19 @@
-FROM node:18-alpine
+FROM node:18.20.3-alpine as builder
 
+WORKDIR /usr/src/app
 
+COPY flexi-cart_web/package.json .
+COPY flexi-cart_web/pnpm-lock.yaml .
+
+RUN npm install -g pnpm
+
+RUN pnpm install
+COPY ./flexi-cart_web/ ./
+
+RUN pnpm run build
+
+FROM nginx:1.26-alpine-slim
+
+COPY nginx_service/default.conf /etc/nginx/conf.d/default.conf
+# RUN --from=build ls -la /home/app/frontend/dist
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
