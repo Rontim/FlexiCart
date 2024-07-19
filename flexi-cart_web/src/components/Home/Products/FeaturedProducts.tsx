@@ -25,7 +25,7 @@ const FeaturedProducts = () => {
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
-        const req = await fetch("http://localhost:8000/api/v1/product/", {
+        const req = await fetch("http://localhost:1337/api/v1/product/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const FeaturedProducts = () => {
                 <a href="#">
                   <img
                     className="p-8 rounded-t-lg"
-                    src={`http://localhost:8000${item.image}`}
+                    src={`http://localhost:1337${item.image}`}
                     alt="product image"
                   />
                 </a>

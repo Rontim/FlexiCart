@@ -1,6 +1,6 @@
 from datetime import timedelta
 import sys
-# import dj_database_url
+import dj_database_url
 import dotenv
 from os import getenv, path
 from pathlib import Path
@@ -45,20 +45,19 @@ INSTALLED_APPS = [
     'order_service',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:1337']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:3030',
-#     'http://localhost:5173',
-#     'http://localhost:1337',
-# ]
-# CORS_WHITELIST = [
-#     'http://localhost:3030',
-#     'http://localhost:5173',
-#     'http://localhost:1337',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3030',
+    'http://localhost:5173',
+    'http://localhost:1337',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3030',
+    'http://localhost:5173',
+    'http://localhost:1337',
+]
 
 
 MIDDLEWARE = [
@@ -111,7 +110,7 @@ EMAIL_USE_TLS = True
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f"redis://127.0.0.1:6379/1",
+        "LOCATION": f"redis://redis:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
@@ -132,7 +131,6 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if DEVELOPMENT_MODE is True:
-    # Postgres Database
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -143,12 +141,13 @@ if DEVELOPMENT_MODE is True:
             'PORT': getenv('DB_PORT', '5432'),
         }
     }
-elif len(sys.argv) > 0 and sys.argv[1] == 'collectstatic':
-    if getenv('DATABASE_URL', None) is None:
+elif DEVELOPMENT_MODE is False:
+    DATABASES_URL = getenv('DATABASE_URL', None)
+    if DATABASES_URL is None:
         raise Exception('DATABASE_URL not set')
-    # DATABASES = {
-    #     'default': dj_database_url.config(default=getenv('DATABASE_URL'))
-    # }
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASES_URL)
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

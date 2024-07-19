@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   backend:
     image: backend
@@ -8,7 +6,7 @@ services:
       context: ./backend_service
       dockerfile: Dockerfile
     env_file:
-      - ./backend_service/.env
+      - ./backend_service/.env.prod
     entrypoint: ./entrypoint.sh
     expose:
       - 8000
@@ -23,7 +21,7 @@ services:
     image: postgres:16.1-alpine
     restart: always
     env_file:
-      - ./backend_service/.env
+      - ./backend_service/.env.prod
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:

@@ -15,7 +15,7 @@ export const registerUser = createAsyncThunk(
     "user/registerUser",
     async ({ first_name, last_name, email, password, username, re_password }: user, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:8000/api/v2/users/", {
+            const response = await fetch("http://localhost:1337/api/v2/users/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const loginUser = createAsyncThunk(
     'user/login',
     async ({ email, password }: { email: string, password: string }, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:8000/api/v1/auth/jwt/create/", {
+            const response = await fetch("http://localhost:1337/api/v1/auth/jwt/create/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const verifyUser = createAsyncThunk(
         if (localStorage.getItem('access')) {
             const token = localStorage.getItem('access');
             try {
-                const response = await fetch("http://localhost:8000/api/v1/auth/jwt/verify/", {
+                const response = await fetch("http://localhost:1337/api/v1/auth/jwt/verify/", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export const activateUser = createAsyncThunk(
     'user/activate',
     async ({ uid, token }: { uid: string | undefined, token: string | undefined }, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:8000/api/v2/users/activation/", {
+            const response = await fetch("http://localhost:1337/api/v2/users/activation/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -151,7 +151,7 @@ export const resendActivationEmail = createAsyncThunk(
     'user/resend-activation-email',
     async (email: string, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:8000/api/v2/users/resend_activation/", {
+            const response = await fetch("http://localhost:1337/api/v2/users/resend_activation/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -182,7 +182,7 @@ export const loadUser = createAsyncThunk(
         if (localStorage.getItem("access")) {
             const token = localStorage.getItem("access");
             try {
-                const response = await fetch('http://localhost:8000/api/v2/users/me/', {
+                const response = await fetch('http://localhost:1337/api/v2/users/me/', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -213,7 +213,7 @@ export const forgotPassword = createAsyncThunk(
     'user/forgot-password',
     async (email: string, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:8000/api/v2/users/reset_password/", {
+            const response = await fetch("http://localhost:1337/api/v2/users/reset_password/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -240,7 +240,7 @@ export const resetPassword = createAsyncThunk(
     'user/reset-password',
     async ({ uid, token, new_password, re_new_password }: { uid: string | undefined, token: string | undefined, new_password: string, re_new_password: string }, thunkAPI) => {
         try {
-            const response = await fetch("http://localhost:8000/api/v2/users/reset_password_confirm/", {
+            const response = await fetch("http://localhost:1337/api/v2/users/reset_password_confirm/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
