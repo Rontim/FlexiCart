@@ -60,8 +60,64 @@ class FVerticalProductCard extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: FSizes.spaceBtwItems / 2),
+          Padding(
+            padding: const EdgeInsets.only(left: FSizes.sm),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const FProductTitle(
+                    title: 'Green Nike Air Shues', smallSize: true),
+                const SizedBox(height: FSizes.spaceBtwItems / 2),
+                Row(
+                  children: [
+                    Text(
+                      'Nike',
+                      style: Theme.of(context).textTheme.labelMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(width: FSizes.xs),
+                    const Icon(
+                      Iconsax.verify5,
+                      color: FColors.primary,
+                      size: FSizes.iconXs,
+                    )
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
+    );
+  }
+}
+
+class FProductTitle extends StatelessWidget {
+  const FProductTitle({
+    super.key,
+    this.maxLines = 2,
+    required this.title,
+    this.smallSize = false,
+    this.textAlign = TextAlign.left,
+  });
+
+  final String title;
+  final bool smallSize;
+  final int maxLines;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      maxLines: maxLines,
+      textAlign: textAlign,
+      overflow: TextOverflow.ellipsis,
+      style: smallSize
+          ? Theme.of(context).textTheme.labelLarge
+          : Theme.of(context).textTheme.titleSmall,
     );
   }
 }
