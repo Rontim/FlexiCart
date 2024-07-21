@@ -55,13 +55,9 @@ services:
       context: ./backend_service
       dockerfile: Dockerfile
     env_file:
-      - ./backend_service/.env
+      - ./backend_service/.env.prod
     entrypoint: ./worker-entrypoint.sh
-    # user: app
-    # command: celery -A flexi_cart worker --loglevel=info --concurrency=1 -E
-    # volumes:
-    #   - static_volume:/home/app/api/static
-    #   - media_volume:/home/app/api/media
+    
     depends_on:
       - db
       - redis

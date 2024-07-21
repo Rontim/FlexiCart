@@ -1,0 +1,91 @@
+services:
+  backend_dev:
+    image: backend-dev
+    container_name: backend_service-dev
+    build:
+      context: ./backend_service
+      dockerfile: Dockerfile
+    environment:
+      - DEVELOPMENT_MODE=${DEVELOPMENT_MODE_DEV}
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG_DEV}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - SITE_NAME=${SITE_NAME}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL_DEV}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND_DEV}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=5432
+    entrypoint: ./entrypoint.sh
+    expose:
+      - 8000
+    volumes:
+      - ./backend_service:/home/app/api
+    depends_on:
+      - db_dev
+
+  db_dev:
+    container_name: postgres_db-dev
+    image: postgres:16.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  nginx_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx_service-dev
+    volumes:
+      - ./backend_service/static:/home/app/api/static
+      - ./backend_service/media:/home/app/api/media
+      - ./flexi-cart_web:/home/app/frontend
+      - ./nginx_service:/etc/nginx/conf.d
+    restart: always
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+    ports:
+      - 1337:80
+    depends_on:
+      - backend_dev
+
+  redis_dev:
+    container_name: redis_service-dev
+    image: redis:alpine
+    expose:
+      - 6379
+
+  celery_dev:
+    image: celery_worker-dev
+    container_name: celery_service-dev
+    build:
+      context: ./backend_service
+      dockerfile: Dockerfile
+    environment:
+      - DEVELOPMENT_MODE=${DEVELOPMENT_MODE_DEV}
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG_DEV}
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL_DEV}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND_DEV}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+    entrypoint: ./worker-entrypoint.sh
+    volumes:
+      - ./backend_service:/home/app/api
+    depends_on:
+      - db_dev
+      - redis_dev

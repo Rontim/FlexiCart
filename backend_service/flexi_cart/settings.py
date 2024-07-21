@@ -11,11 +11,11 @@ from django.core.management.utils import get_random_secret_key
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-dotenv_file = BASE_DIR / ".env"
-if dotenv_file.is_file():
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = BASE_DIR / ".env"
+# if dotenv_file.is_file():
+#     dotenv.load_dotenv(dotenv_file)
 
-DEVELOPMENT_MODE = getenv('DEVELOPMENT_MODE', False) == 'True'
+DEVELOPMENT_MODE = getenv('DEVELOPMENT_MODE', 'False') == 'True'
 
 SECRET_KEY = getenv('SECRET_KEY', get_random_secret_key())
 
@@ -118,9 +118,9 @@ CACHES = {
 }
 
 # Celery Settings
-CELERY_BROKER_URL = getenv('CELERY_BROKER_URL', 'redis://localhost:6379')
+CELERY_BROKER_URL = getenv('CELERY_BROKER_URL', 'redis://redis:6379/0')
 CELERY_RESULT_BACKEND = getenv(
-    'CELERY_RESULT_BACKEND', 'redis://localhost:6379')
+    'CELERY_RESULT_BACKEND', 'redis://redis:6379/0')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
@@ -129,6 +129,7 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+print(f'DB Details: /{getenv("DB_NAME", "flexicart")}/{getenv("DB_USER", "postgres")}/{getenv("DB_PASSWORD", "postgres")}/{getenv("DB_HOST", "db_dev")}/')
 
 if DEVELOPMENT_MODE is True:
     DATABASES = {
@@ -137,8 +138,7 @@ if DEVELOPMENT_MODE is True:
             'NAME': getenv('DB_NAME', 'flexicart'),
             'USER': getenv('DB_USER', 'postgres'),
             'PASSWORD': getenv('DB_PASSWORD', 'postgres'),
-            'HOST': getenv('DB_HOST', 'localhost'),
-            'PORT': getenv('DB_PORT', '5432'),
+            'HOST': getenv('DB_HOST', 'db_dev'),
         }
     }
 elif DEVELOPMENT_MODE is False:

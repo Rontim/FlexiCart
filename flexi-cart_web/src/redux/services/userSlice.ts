@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { activateUser, forgotPassword, loadUser, loginUser, registerUser, resendActivationEmail, resetPassword, verifyUser } from "../features/userActions";
-
+import { toast } from "react-toastify";
 
 export type UserStateType = {
     user: {
@@ -58,10 +58,28 @@ const userSlice = createSlice({
         }).addCase(registerUser.fulfilled, (state, action) => {
             state.loading = 'succeeded';
             state.user = action.payload.user;
+            toast.success('User registered successfully. Please check your email to activate your account', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }).addCase(registerUser.rejected, (state, action) => {
             state.loading = 'failed';
             state.error = action.error.message || 'Something went wrong';
+            toast.error(state.error, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }).addCase(loginUser.pending, (state) => {
             state.loading = 'pending';
@@ -71,17 +89,53 @@ const userSlice = createSlice({
             state.authenticated = true;
             localStorage.setItem("access", action.payload.access);
             localStorage.setItem("refresh", action.payload.refresh);
+            toast.success('User logged in successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }).addCase(loginUser.rejected, (state, action) => {
             state.loading = 'failed';
             state.error = action.error.message || 'Something went wrong';
             state.authenticated = false;
+            toast.error(state.error, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }).addCase(activateUser.pending, (state) => {
             state.loading = 'pending';
         }).addCase(activateUser.fulfilled, (state) => {
             state.loading = 'succeeded';
+            toast.success('User activated successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }).addCase(activateUser.rejected, (state, action) => {
             state.loading = 'failed';
             state.error = action.error.message || 'Something went wrong';
+            toast.error(state.error, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }).addCase(resendActivationEmail.pending, (state) => {
             state.loading = 'pending';
