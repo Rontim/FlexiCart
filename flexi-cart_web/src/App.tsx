@@ -67,7 +67,7 @@ const routes = Router([
     loader: async ({ params }) => {
       try {
         const req = await fetch(
-          `http://localhost:8000/api/v1/products/${params.categoryslug}`,
+          `http://localhost:1337/api/v1/products/${params.categoryslug}`,
           {
             method: "GET",
             headers: {

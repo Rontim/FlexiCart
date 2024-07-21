@@ -14,7 +14,10 @@ const Products = () => {
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           <p>{product.price}</p>
-          <img src={product.image} alt={product.name} />
+          <img
+            src={`http://localhost:1337/${product.image}`}
+            alt={product.name}
+          />
         </div>
       ))}
     </div>
