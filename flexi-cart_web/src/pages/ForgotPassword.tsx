@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { forgotPassword } from "../redux/features/userActions";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar/RootNavBar";
 import RootFooter from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 

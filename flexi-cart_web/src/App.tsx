@@ -20,7 +20,7 @@ import CheckEmail from "./pages/CheckEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import PasswordReset from "./pages/PasswordReset";
 import NotFound from "./pages/NotFound";
-import Products from "./pages/Products";
+import Products, { productLoader } from "./pages/Products";
 
 const routes = Router([
   {
@@ -64,27 +64,7 @@ const routes = Router([
   {
     path: "/products/:categoryslug",
     element: <Products />,
-    loader: async ({ params }) => {
-      try {
-        const req = await fetch(
-          `http://localhost:1337/api/v1/products/${params.categoryslug}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (req.ok) {
-          return await req.json();
-        } else {
-          return [];
-        }
-      } catch (error) {
-        return [];
-      }
-    },
+    loader: productLoader,
   },
   {
     path: "*",
